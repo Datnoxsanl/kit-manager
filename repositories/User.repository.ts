@@ -25,21 +25,24 @@ export const addUser = async ({
   return response.data;
 };
 
-export const getAllUsers = async (queries: any) => {
+export const getAllUsers = async (params: any) => {
   const response = await api.get("/users", {
-    params: {
-      ...queries,
-    },
+    params,
   });
   return response.data;
 };
 
-export const getUserById = async (id: number) => {
-  const response = await api.get(`/users/${id}`);
+export const getUserById = async (id: number, params: any) => {
+  const response = await api.get(`/users/${id}`, { params });
   return response.data;
 };
 
 export const updateUser = async ({ id, data }: { id: number; data: any }) => {
   const response = await api.put(`/users/${id}`, data);
+  return response.data;
+};
+
+export const deleteUser = async (id: number) => {
+  const response = await api.delete(`/users/${id}`);
   return response.data;
 };
